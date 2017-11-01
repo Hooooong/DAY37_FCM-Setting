@@ -12,7 +12,7 @@ ____________________________________________________
 
 - FCM 방식
 
-  ![FCM]()
+  ![FCM](https://github.com/Hooooong/DAY37_FCM-Setting/blob/master/image/FCM%ED%86%B5%EC%8B%A0.PNG)
 
   - Android 에서 다른 Android 로 FCM 을 보내기 위해서는 Firebase 에 직접적으로 Message 를 보내는 것이 아닌, `FCM과 통신하는 개인 Server` 또는 `FCM Function` 을 통해 간접적으로 Message를 보내야 한다.
 
@@ -93,7 +93,7 @@ ____________________________________________________
 
   - Fireabse 모듈을 사용하여 직접 `Fireabse Function` 을 작성한다.
 
-  ![FCM Functions]
+  ![FCM Functions](https://github.com/Hooooong/DAY37_FCM-Setting/blob/master/image/FCMFunction.PNG)
 
   ```javascript
   const fun = require("firebase-functions");
@@ -127,7 +127,7 @@ ____________________________________________________
   });
   ```
 
-  ![FCM Functinos]
+  ![FCM Functinos2](https://github.com/Hooooong/DAY37_FCM-Setting/blob/master/image/FCMFunction2.PNG)
 
   - 위 순으로 작성하게 되면 Firebase functions 에 생성이 되고, 사용할 Url 을 사용자에게 보내준다.
 
