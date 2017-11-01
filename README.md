@@ -135,7 +135,9 @@ ____________________________________________________
 
 - Android 에서 보내는 방법
 
-  - AsyncTask + HttpUrlConnection 인 `Retrofit2` 를 사용하여 개인 Server 또는 Firebase Functions 에 생성된 Url 을 통해 통신한다.
+  - AsyncTask + HttpUrlConnection 인 `Retrofit2` 를 사용하여 `개인 Server URL` 또는 `Firebase Functions 에 생성된 URL` 을 통해 통신한다.
+
+  - 둘 다 POST 통신이지만, `개인 Server` 는 JSON String 을 보내고, `Firebase Function` 도 JSON String 을 보내지만 Content-Type 을 `application/json` 으로 해줘야 한다.
 
   ```java
   // Body 설정
