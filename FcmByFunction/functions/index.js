@@ -28,7 +28,15 @@ exports.sendNotification = fun.https.onRequest((req, res)=>{
 	var msg = {
 		notification : {
 			title : "노티바에 나타나는 타이틀",
-			body : dataObj.msg
+			body : dataObj.msg,
+			// Action Name
+			// intent-filter 의 action- name 의 값을 넣는다.
+			// Default 값을 넣어야 인식 한다. 
+			// <action android:name="NOTI_LAUNCHER" />
+			// <category android:name="android.intent.category.DEFAULT" />
+			//click_action : "NOTI_LAUNCHER",
+			// res/raw/파일명 을 작성하면 된다.
+			//sound: "kick2.wav"
 		}
 	};
 	

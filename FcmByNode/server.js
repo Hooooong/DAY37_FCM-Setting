@@ -10,7 +10,18 @@ var msg = {
     to : "",
     notification : {
         title : "Message Test!",
-        body : ""
+        body : "",
+        // Action Name
+        // intent-filter 의 action- name 의 값을 넣는다.
+        // Default 값을 넣어야 인식 한다. 
+        // <action android:name="NOTI_LAUNCHER" />
+        // <category android:name="android.intent.category.DEFAULT" />
+        click_action : "NOTI_LAUNCHER",
+        sound: "kick2.wav"
+    },
+    data :{
+        type:"one",
+        content : ""
     }
 }
 
@@ -30,6 +41,7 @@ var server = http.createServer(function(req,res){
             // 메세지 데이터 변환
             msg.to = postObj.to;
             msg.notification.body = postObj.msg;
+            msg.data.content = postObj.msg;
 
             // 메세지를 FCM 서버로 전송
             httpUrlConnection(
