@@ -22,74 +22,74 @@ ____________________________________________________
 
 -  FCM 과 통신하는 개인 Server 작성
 
-  - Fireabse Project 의 Server Key 와 FcmServerUrl 을 통해 Message 를 보낸다.
+    - Fireabse Project 의 Server Key 와 FcmServerUrl 을 통해 Message 를 보낸다.
 
-  ```javascript
-  var http = require("http");
-  var httpUrlConnection = require("request");
+    ```javascript
+    var http = require("http");
+    var httpUrlConnection = require("request");
 
-  // FCM 설정
-  const fcmServerUrl = "https://fcm.googleapis.com/fcm/send";
-  // Server Key
-  const serverKey = "서버키"
+    // FCM 설정
+    const fcmServerUrl = "https://fcm.googleapis.com/fcm/send";
+    // Server Key
+    const serverKey = "서버키"
 
-  var msg = {
-      to : "",
-      notification : {
-          title : "Message Test!",
-          body : ""
-      }
-  }
+    var msg = {
+        to : "",
+        notification : {
+            title : "Message Test!",
+            body : ""
+        }
+    }
 
-  var server = http.createServer(function(req,res){
-      if(req.url == "/sendNotification"){
-          var post_data = "";
+    var server = http.createServer(function(req,res){
+        if(req.url == "/sendNotification"){
+            var post_data = "";
 
-          // 메세지 수신
-          req.on('data', function(data){
-              post_data = data;
-          });
+            // 메세지 수신
+            req.on('data', function(data){
+                post_data = data;
+            });
 
-          // 메세지 수신 완료
-          req.on('end', function(){
-              // JSON String 을 객체로 변환
-              var postObj = JSON.parse(post_data);
-              // 메세지 데이터 변환
-              msg.to = postObj.to;
-              msg.notification.body = postObj.msg;
+            // 메세지 수신 완료
+            req.on('end', function(){
+                // JSON String 을 객체로 변환
+                var postObj = JSON.parse(post_data);
+                // 메세지 데이터 변환
+                msg.to = postObj.to;
+                msg.notification.body = postObj.msg;
 
-              // 메세지를 FCM 서버로 전송
-              httpUrlConnection(
-                  {
-                      // HTTP 메세지 객체
-                      url : fcmServerUrl,
-                      method : "POST",
-                      headers : {
-                          "Authorization" : "key="+serverKey,
-                          "Content-Type": "application/json"
-                      },
-                      body : JSON.stringify(msg)
-                  },
-                  function(error, answer, body){
-                      var result = {
-                          code : answer.statusCode,
-                          msg : body
-                      };
-                      // Retrofit 에서 응답받으려면 writeHead 를 꼭 보내줘야 한다.
-                      res.writeHead(200,{"Content-Type" : "plain/text"});
-                      res.end(JSON.stringify(result));
-                  }
-              );
-          });
-      }else{
-          res.end("404 page Not Found!");
-      }
-  });
+                // 메세지를 FCM 서버로 전송
+                httpUrlConnection(
+                    {
+                        // HTTP 메세지 객체
+                        url : fcmServerUrl,
+                        method : "POST",
+                        headers : {
+                            "Authorization" : "key="+serverKey,
+                            "Content-Type": "application/json"
+                        },
+                        body : JSON.stringify(msg)
+                    },
+                    function(error, answer, body){
+                        var result = {
+                            code : answer.statusCode,
+                            msg : body
+                        };
+                        // Retrofit 에서 응답받으려면 writeHead 를 꼭 보내줘야 한다.
+                        res.writeHead(200,{"Content-Type" : "plain/text"});
+                        res.end(JSON.stringify(result));
+                    }
+                );
+            });
+        }else{
+            res.end("404 page Not Found!");
+        }
+    });
 
-  server.listen(8090, function(){
-      console.log("Server is Running....");
-  });
-  ```
+    server.listen(8090, function(){
+        console.log("Server is Running....");
+    });
+    ```
 
 - FCM Function 작성
 
