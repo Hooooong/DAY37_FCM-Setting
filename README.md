@@ -124,7 +124,7 @@ ____________________________________________________
 
 - Firebase Function 작성
 
-  - Fireabse 모듈을 사용하여 직접 `Fireabse Function` 을 작성한다.
+  - Fireabse 모듈을 사용하여 직접 `Firebase Function` 을 작성한다.
 
   ![Firebase Functions](https://github.com/Hooooong/DAY37_FCM-Setting/blob/master/image/FCMFunction.PNG)
 
